@@ -26,6 +26,11 @@ public class HyperCar extends Car{
         this.type = type;
     }
 
+    public Integer fullHorsepower()
+    {
+        return this.added_horsepower + getBase_horsepower();
+    }
+
     @Override
     public String toString() {
         return "HyperCar{" +
