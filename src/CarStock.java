@@ -121,7 +121,10 @@ public class CarStock {
     }
     public void showPreviousOwners()
     {
-        //Use for map on previous owners
+        for(Car c : cars)
+        {
+            System.out.println(c.showPrevs());
+        }
     }
     public void modifyAge(String name, Integer age)
     {
@@ -134,4 +137,17 @@ public class CarStock {
             }
         }
     }
+
+    public void showTopCars(String name)
+    {
+        for(Car c : cars)
+        {
+            if(c.getName().equalsIgnoreCase(name))
+            {
+                System.out.println(c.allTop());
+            }
+        }
+    }
+
+
 }

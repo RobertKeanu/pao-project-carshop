@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public abstract class Car {
     private String name;
@@ -11,6 +9,9 @@ public abstract class Car {
 
     private Integer price;
     private List<String> reviews = new ArrayList<>();
+
+    private PreviousOwners prevs;
+    private TopCars top;
 
     public Car(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock, Integer price)
     {
@@ -82,6 +83,16 @@ public abstract class Car {
     public void addReview(String review)
     {
         this.reviews.add(review);
+    }
+
+    public Set<Car> allTop()
+    {
+        return top.showTop();
+    }
+
+    public Map<String,Integer> showPrevs()
+    {
+        return prevs.showPrevious();
     }
 }
 
