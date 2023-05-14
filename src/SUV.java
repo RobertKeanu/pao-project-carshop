@@ -7,8 +7,8 @@ public class SUV extends Car{
     private List<String> added_features = Arrays.asList("28' inch wheels", "Louder exhaust", "Ceramic break disc","Bigger calipers");
 
     private List<String> feats = new ArrayList<>();
-    public SUV(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock) {
-        super(name, description, production_date, base_horsepower, available_stock);
+    public SUV(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock,Integer price) {
+        super(name, description, production_date, base_horsepower, available_stock,price);
 
         this.added_horsepower = added_horsepower;
     }

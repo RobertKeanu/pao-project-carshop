@@ -2,17 +2,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TopCars {
-    private Set<Car> tops = new HashSet<>();
+    private Set<String> tops = new HashSet<>();
+    public TopCars(){}
 
-    public void addCarToTop(Car c)
+    public void addCarToTop(String name)
     {
-        if(c.getBase_horsepower() >= 350 && c.getPrice() <= 10000 && c.getProduction_date() >= 2007)
-        {
-            tops.add(c);
-        }
+        tops.add(name);
     }
 
-    public Set<Car> showTop()
+    public Set<String> showTop()
     {
         return tops;
     }

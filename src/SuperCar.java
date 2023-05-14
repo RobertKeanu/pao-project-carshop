@@ -1,8 +1,8 @@
 public class SuperCar extends Car{
     private Integer added_horsepower;
     private String rim_material;
-    public SuperCar(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock) {
-        super(name, description, production_date, base_horsepower, available_stock);
+    public SuperCar(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock, Integer price) {
+        super(name, description, production_date, base_horsepower, available_stock, price);
 
         this.added_horsepower = added_horsepower;
         this.rim_material = rim_material;

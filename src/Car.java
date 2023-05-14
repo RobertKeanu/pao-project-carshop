@@ -1,19 +1,21 @@
 import java.util.*;
 
-public abstract class Car {
+public class Car {
     private String name;
     private String description;
-    private Integer production_date;
-    private Integer base_horsepower;
-    private Integer available_stock;
+    private int production_date;
+    private int base_horsepower;
+    private int available_stock;
 
-    private Integer price;
+    private int price;
     private List<String> reviews = new ArrayList<>();
+
+    private Set<Car> carsss = new HashSet<>();
 
     private PreviousOwners prevs;
     private TopCars top;
 
-    public Car(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock, Integer price)
+    public Car(String name, String description, int production_date, int base_horsepower, int available_stock, int price)
     {
         this.name = name;
         this.description = description;
@@ -21,6 +23,7 @@ public abstract class Car {
         this.base_horsepower = base_horsepower;
         this.available_stock = available_stock;
         this.price = price;
+        top = new TopCars();
     }
 
     public String getName() {
@@ -85,11 +88,14 @@ public abstract class Car {
         this.reviews.add(review);
     }
 
-    public Set<Car> allTop()
+    public Set<String> allTop()
     {
-        return top.showTop();
+        return top.showTop(); //features of a car
     }
 
+    public void addPrevs(String name, Integer nr) { prevs.updateOwners(name,nr);}
+
+    public void addCarToTop(String name) { top.addCarToTop(name); }
     public Map<String,Integer> showPrevs()
     {
         return prevs.showPrevious();

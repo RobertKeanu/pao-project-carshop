@@ -5,22 +5,30 @@ public class CarStock {
     List<Car> cars = new ArrayList<>();
     List<Customer> customers = new ArrayList<>();
 
+    private Map<String, Integer> prevowners = new HashMap<>();
+
+    private Set<Car> carz = new HashSet<>();
+    private CarStock(){}
+
     private static class Singleton{
-        private static final Singleton instance = new Singleton();
-        private Singleton(){}
+        private static final CarStock instance = new CarStock();
     }
 
-    public static Singleton getInstance()
+    public static CarStock getInstance()
     {
         return Singleton.instance;
+    }
+    public void addCar(Car c)
+    {
+        cars.add(c);
     }
 
     public void getAllCars()
     {
         for(Car c : cars)
         {
-            System.out.println("\n" + "Name: " + c.getName() + "Description: " + c.getDescription() + "Base Horse Power: " + c.getBase_horsepower() +
-                    "Production Date: " + c.getProduction_date() + "Available Stock: " + c.getAvailable_stock());
+            System.out.println("\n" + "Name: " + c.getName() + "\n" + "Description: " + c.getDescription() + "\n" +  "Base Horse Power: " + c.getBase_horsepower() +
+                    "\n" +  "Production Date: "  +  c.getProduction_date() + "\n" +  "Available Stock: " + c.getAvailable_stock() + "\n");
 
             System.out.println("Reviews for cars: " + c.getReviews() + "\n");
 
@@ -55,18 +63,6 @@ public class CarStock {
             if(c.getName().equalsIgnoreCase(name))
             {
                 c.addReview(review);
-                break;
-            }
-        }
-    }
-    public void addCar(String name, Integer unitNumber, Integer horsePower)
-    {
-        for(Car c : cars)
-        {
-            if(c.getName().equalsIgnoreCase(name))
-            {
-                c.setAvailable_stock(unitNumber);
-                c.setBase_horsepower(horsePower);
                 break;
             }
         }
@@ -119,34 +115,47 @@ public class CarStock {
     {
         cars.add(c);
     }
-    public void showPreviousOwners()
+
+    public void updateOwners(String name, Integer nr)
     {
-        for(Car c : cars)
+            prevowners.put(name, nr);
+    }
+    public void showPrevious()
+    {
+        for(String name : prevowners.keySet())
         {
-            System.out.println(c.showPrevs());
+            String key = name.toString();
+            String value = prevowners.get(name).toString();
+            System.out.println(key + " " + value);
         }
     }
-    public void modifyAge(String name, Integer age)
+    public void modifyAge(String name, String age)
     {
         for(Customer customer : customers)
         {
             if(customer.getName().equalsIgnoreCase(name))
             {
-                customer.setAge(String.valueOf(age));
+                customer.setAge(age);
                 break;
             }
         }
     }
-
-    public void showTopCars(String name)
+    public void addCarintop(String name)
     {
         for(Car c : cars)
         {
             if(c.getName().equalsIgnoreCase(name))
             {
-                System.out.println(c.allTop());
+                c.addCarToTop(name);
+                break;
             }
         }
+    }
+    public void showTopCars(String name)
+    {
+        for(Car c:cars){
+            if(c.getName().equalsIgnoreCase(name))
+            System.out.println(c.allTop());}
     }
 
 
