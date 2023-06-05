@@ -1,10 +1,11 @@
+package Service;
+
 import Audit.audit;
 import CarPackage.Car;
 import CarPackage.HyperCar;
 import CarPackage.SUV;
 import CarPackage.SuperCar;
 import Customer.Customer;
-import DBConnection.DBConnection;
 import DBServices.CarServiceDB;
 
 import java.sql.SQLException;
@@ -33,19 +34,20 @@ public class CarStock {
     }
 
 //    private static class Singleton{
-//        private static final CarStock instance = new CarStock();
+//        private static final Service.CarStock instance = new Service.CarStock();
 //    }
-//    public static CarStock getInstance()
+//    public static Service.CarStock getInstance()
 //    {
 //        return Singleton.instance;
 //    }
-    public void addCar(Car c)
-    {
-        cars.add(c);
+    public void addCar(Car c) throws SQLException {
+        carServiceDB.addCar(c);
+        auditinstance.makeAudit("added a new car");
     }
 
     public void getallTest() throws SQLException {
         carServiceDB.allCars();
+        auditinstance.makeAudit("list all cars");
     }
 
     public void getAllCars()
@@ -96,11 +98,14 @@ public class CarStock {
     }
     public void addClient(Customer customer)
     {
+
         customers.add(customer);
     }
 
     public void listClients()
     {
+        customers.stream()
+                .sorted(Comparator.comparing(Customer::getName));
         for(Customer customer : customers)
         {
             customer.showStats();

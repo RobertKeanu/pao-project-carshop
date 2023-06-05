@@ -34,18 +34,20 @@ public class CarServiceDB {
         }
     }
     public void addCar(Car car) throws SQLException {
-        String query = "insert into car (name, description, production_year, base_horsepower, available_stock, price) values " +
-                "(?, ?, ?, ?, ?, ?)";
+        String query = "insert into car (id, name, description, production_year, base_horsepower, available_stock, price) values " +
+                "(?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pr = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-        pr.setString(1, car.getName() );
-        pr.setString(2, car.getDescription() );
-        pr.setString(3, String.valueOf(car.getProduction_date()));
-        pr.setString(4, String.valueOf(car.getBase_horsepower()) );
-        pr.setString(5, String.valueOf(car.getAvailable_stock()));
-        pr.setString(6, String.valueOf(car.getPrice()) );
+        pr.setInt(1,carsize+1);
+        pr.setString(2, car.getName() );
+        pr.setString(3, car.getDescription() );
+        pr.setString(4, String.valueOf(car.getProduction_date()));
+        pr.setString(5, String.valueOf(car.getBase_horsepower()) );
+        pr.setString(6, String.valueOf(car.getAvailable_stock()));
+        pr.setString(7, String.valueOf(car.getPrice()) );
         pr.execute();
         int id = -1;
         ResultSet rs = pr.getGeneratedKeys();
-
+        if(rs.next())
+            id = rs.getInt(1);
     }
 }

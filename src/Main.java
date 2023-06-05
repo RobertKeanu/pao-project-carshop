@@ -1,13 +1,14 @@
 import CarPackage.Car;
 import Customer.Customer;
 import DBServices.CarServiceDB;
+import Service.CarStock;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         CarServiceDB car = new CarServiceDB();
         var instance = CarStock.getInstance(car);
         Scanner scanner = new Scanner(System.in);
