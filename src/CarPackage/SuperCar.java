@@ -1,4 +1,8 @@
-public class SuperCar extends Car{
+package CarPackage;
+
+import CarPackage.Car;
+
+public class SuperCar extends Car {
     private Integer added_horsepower;
     private String rim_material;
     public SuperCar(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock, Integer price) {
@@ -26,7 +30,7 @@ public class SuperCar extends Car{
 
     @Override
     public String toString() {
-        return "SuperCar{" +
+        return "CarPackage.SuperCar{" +
                 "added_horsepower=" + added_horsepower +
                 ", rim_material='" + rim_material + '\'' +
                 '}';

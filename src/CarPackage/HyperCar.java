@@ -1,4 +1,8 @@
-public class HyperCar extends Car{
+package CarPackage;
+
+import CarPackage.Car;
+
+public class HyperCar extends Car {
     private Integer added_horsepower;
     private String type;
     //meaning if its electrical or combustion
@@ -33,7 +37,7 @@ public class HyperCar extends Car{
 
     @Override
     public String toString() {
-        return "HyperCar{" +
+        return "CarPackage.HyperCar{" +
                 "added_horsepower=" + added_horsepower +
                 ", type='" + type + '\'' +
                 '}';

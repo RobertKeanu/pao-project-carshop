@@ -1,19 +1,26 @@
+import Audit.audit;
+import CarPackage.Car;
+import CarPackage.HyperCar;
+import CarPackage.SUV;
+import CarPackage.SuperCar;
+import Customer.Customer;
+import DBServices.CarServiceDB;
+
 import java.util.*;
 
 
 public class CarStock {
     List<Car> cars = new ArrayList<>();
     List<Customer> customers = new ArrayList<>();
-
+    private static audit auditinstance = audit.getInstance();
     private Map<String, Integer> prevowners = new HashMap<>();
-
+    CarServiceDB carServiceDB;
     private Set<Car> carz = new HashSet<>();
     private CarStock(){}
 
     private static class Singleton{
         private static final CarStock instance = new CarStock();
     }
-
     public static CarStock getInstance()
     {
         return Singleton.instance;
@@ -55,6 +62,7 @@ public class CarStock {
                 System.out.println("Rim-urile au materialul: " + sc.getRim_material() + "\n");
             }
         }
+        auditinstance.makeAudit("list all cars");
     }
     public void addReview(String name, String review)
     {
@@ -66,6 +74,7 @@ public class CarStock {
                 break;
             }
         }
+        auditinstance.makeAudit("add review");
     }
     public void addClient(Customer customer)
     {
@@ -78,6 +87,7 @@ public class CarStock {
         {
             customer.showStats();
         }
+        auditinstance.makeAudit("added client!");
     }
     public void modifyPrice(String name,Integer newprice)
     {
@@ -89,6 +99,7 @@ public class CarStock {
                 break;
             }
         }
+        auditinstance.makeAudit("modified price");
     }
     public void filterCars(String name, Integer productionDate)
     {
@@ -114,6 +125,7 @@ public class CarStock {
     public void addNewCar(Car c)
     {
         cars.add(c);
+        auditinstance.makeAudit("added new car");
     }
 
     public void updateOwners(String name, Integer nr)
@@ -156,6 +168,7 @@ public class CarStock {
         for(Car c:cars){
             if(c.getName().equalsIgnoreCase(name))
             System.out.println(c.allTop());}
+        auditinstance.makeAudit("showing top car");
     }
 
 

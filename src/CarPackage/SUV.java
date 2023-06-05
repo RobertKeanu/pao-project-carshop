@@ -1,8 +1,12 @@
+package CarPackage;
+
+import CarPackage.Car;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SUV extends Car{
+public class SUV extends Car {
     private Integer added_horsepower;
     private List<String> added_features = Arrays.asList("28' inch wheels", "Louder exhaust", "Ceramic break disc","Bigger calipers");
 

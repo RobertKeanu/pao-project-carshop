@@ -1,3 +1,6 @@
+import CarPackage.Car;
+import Customer.Customer;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
@@ -25,7 +28,9 @@ public class Main {
 //        instance.getAllCars();
             var choice = scanner.next();
             switch (choice) {
-                case "1" -> instance.getAllCars();
+                case "1" -> {
+                    instance.getAllCars();
+                }
                 case "2" -> {
                     System.out.println("Enter name of car to add in top: ");
                     var name = scanner.next();
