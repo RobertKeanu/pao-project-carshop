@@ -3,18 +3,16 @@ package DBServices;
 import DBConnection.DBConnection;
 import CarPackage.Car;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CarServiceDB {
     private static CarServiceDB instance;
+    private int carsize;
     private static Connection con = DBConnection.getDbConnection();
 
-    private CarServiceDB(){}
+    public CarServiceDB(){}
 
     public static CarServiceDB getInstance()
     {
@@ -24,24 +22,30 @@ public class CarServiceDB {
         }
         return instance;
     }
-    public Map<Integer, Car> getCars()
-    {
-        Map<Integer, Car> cars= new HashMap<>();
-        try
+    public void allCars() throws SQLException {
+        String query = "select * from car";
+        PreparedStatement pr = con.prepareStatement(query);
+        ResultSet resultSet = pr.executeQuery();
+        while(resultSet.next())
         {
-            String query1 = "select * from car";
-            PreparedStatement pr = con.prepareStatement(query1);
-            ResultSet resultSet = pr.executeQuery();
-            while(resultSet.next())
-            {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                System.out.println(id + " " + name);
-                cars.put(id,new Car(name,"tank",2002, 100,1000,100));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            carsize = Integer.parseInt(resultSet.getString(1));
+            System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name")
+            + " " + resultSet.getString("description") +" " + resultSet.getInt("price"));
         }
-        return cars;
+    }
+    public void addCar(Car car) throws SQLException {
+        String query = "insert into car (name, description, production_year, base_horsepower, available_stock, price) values " +
+                "(?, ?, ?, ?, ?, ?)";
+        PreparedStatement pr = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        pr.setString(1, car.getName() );
+        pr.setString(2, car.getDescription() );
+        pr.setString(3, String.valueOf(car.getProduction_date()));
+        pr.setString(4, String.valueOf(car.getBase_horsepower()) );
+        pr.setString(5, String.valueOf(car.getAvailable_stock()));
+        pr.setString(6, String.valueOf(car.getPrice()) );
+        pr.execute();
+        int id = -1;
+        ResultSet rs = pr.getGeneratedKeys();
+
     }
 }

@@ -1,12 +1,15 @@
 import CarPackage.Car;
 import Customer.Customer;
+import DBServices.CarServiceDB;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        var instance = CarStock.getInstance();
+        CarServiceDB car = new CarServiceDB();
+        var instance = CarStock.getInstance(car);
         Scanner scanner = new Scanner(System.in);
         while(true) {
             System.out.println("1.List all cars ");
@@ -29,7 +32,11 @@ public class Main {
             var choice = scanner.next();
             switch (choice) {
                 case "1" -> {
-                    instance.getAllCars();
+                    try {
+                        instance.getallTest();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 case "2" -> {
                     System.out.println("Enter name of car to add in top: ");

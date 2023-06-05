@@ -4,8 +4,10 @@ import CarPackage.HyperCar;
 import CarPackage.SUV;
 import CarPackage.SuperCar;
 import Customer.Customer;
+import DBConnection.DBConnection;
 import DBServices.CarServiceDB;
 
+import java.sql.SQLException;
 import java.util.*;
 
 
@@ -16,18 +18,34 @@ public class CarStock {
     private Map<String, Integer> prevowners = new HashMap<>();
     CarServiceDB carServiceDB;
     private Set<Car> carz = new HashSet<>();
-    private CarStock(){}
-
+    private CarStock(CarServiceDB carServiceDB){
+        this.carServiceDB = carServiceDB;
+    }
     private static class Singleton{
-        private static final CarStock instance = new CarStock();
+        public static CarStock createInstance(CarServiceDB carServiceDB)
+        {
+            return new CarStock(carServiceDB);
+        }
     }
-    public static CarStock getInstance()
+    public static CarStock getInstance(CarServiceDB carServiceDB)
     {
-        return Singleton.instance;
+        return Singleton.createInstance(carServiceDB);
     }
+
+//    private static class Singleton{
+//        private static final CarStock instance = new CarStock();
+//    }
+//    public static CarStock getInstance()
+//    {
+//        return Singleton.instance;
+//    }
     public void addCar(Car c)
     {
         cars.add(c);
+    }
+
+    public void getallTest() throws SQLException {
+        carServiceDB.allCars();
     }
 
     public void getAllCars()
