@@ -50,4 +50,29 @@ public class CarServiceDB {
         if(rs.next())
             id = rs.getInt(1);
     }
+    public void removeCar(int price)
+    {
+        String deletebyPrice = "delete from car where price = ?";
+        try{
+            PreparedStatement st = con.prepareStatement(deletebyPrice);
+            st.setInt(1, price);
+            st.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+    public void updatePrice(String name,int price)
+    {
+        String updatePr = "update car set name = ? where price = ?";
+        try{
+            PreparedStatement pr = con.prepareStatement(updatePr);
+            pr.setString(1,name);
+            pr.setInt(2,price);
+            pr.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

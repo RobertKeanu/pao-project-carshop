@@ -134,6 +134,11 @@ public class CarStock {
             }
         }
     }
+    public void removeCar(int price)
+    {
+        carServiceDB.removeCar(price);
+        auditinstance.makeAudit("deleted a car");
+    }
     public void modifyPhone(String name, String phone)
     {
         for(Customer customer : customers)
@@ -144,6 +149,10 @@ public class CarStock {
                 break;
             }
         }
+    }
+    public void updateCar(String name, int price)
+    {
+        carServiceDB.updatePrice(name,price);
     }
     public void addNewCar(Car c)
     {

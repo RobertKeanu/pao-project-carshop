@@ -27,6 +27,8 @@ public class Main {
             System.out.println("12.Stop the program!!!!");
             System.out.println("13.Show the number of owners for all cars: ");
             System.out.println("14.Show the cars in top ");
+            System.out.println("15.Remove a car from the list ");
+            System.out.println("16.Update the price on a car with a given name ");
             Car s = new Car("Mercedes E60 ", "bomba rau ", 1992, 250, 12, 25000);
             Car q = new Car("Bmw E60 ", "tank ce sa zic ", 2002, 300, 2, 5000);
 //        instance.getAllCars();
@@ -125,6 +127,19 @@ public class Main {
                     System.out.println("Enter the name of the car to show its features: ");
                     var name = scanner.next();
                     instance.showTopCars(name);
+                }
+                case "15" -> {
+                    System.out.println("Enter the price of the car that you want to delete from the DB");
+                    int price = scanner.nextInt();
+                    instance.removeCar(price);
+                }
+                case "16" ->{
+                    System.out.println("Introduceti numele: ");
+                    var name = scanner.next();
+                    System.out.println("Introduceti pretul: ");
+                    int price = scanner.nextInt();
+                    instance.updateCar(name,price);
+
                 }
             }
             System.out.println("To end the program press 12");
