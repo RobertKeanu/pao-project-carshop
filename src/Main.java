@@ -1,6 +1,11 @@
 import CarPackage.Car;
+import CarPackage.HyperCar;
 import Customer.Customer;
 import DBServices.CarServiceDB;
+import DBServices.HyperCarService;
+import DBServices.PreviousOwnersService;
+import DBServices.TopCarsService;
+import Exceptions.FirstException;
 import Service.CarStock;
 
 import java.security.NoSuchAlgorithmException;
@@ -10,7 +15,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws SQLException {
         CarServiceDB car = new CarServiceDB();
-        var instance = CarStock.getInstance(car);
+        HyperCarService hp = new HyperCarService();
+        TopCarsService topCarsService = new TopCarsService();
+        PreviousOwnersService previousOwnersService = new PreviousOwnersService();
+        var instance = CarStock.getInstance(car,hp,topCarsService,previousOwnersService);
         Scanner scanner = new Scanner(System.in);
         while(true) {
             System.out.println("1.List all cars ");
@@ -29,6 +37,8 @@ public class Main {
             System.out.println("14.Show the cars in top ");
             System.out.println("15.Remove a car from the list ");
             System.out.println("16.Update the price on a car with a given name ");
+            System.out.println("17.Show all the hypercars in stock ");
+            System.out.println("18.Show all previous owners ");
             Car s = new Car("Mercedes E60 ", "bomba rau ", 1992, 250, 12, 25000);
             Car q = new Car("Bmw E60 ", "tank ce sa zic ", 2002, 300, 2, 5000);
 //        instance.getAllCars();
@@ -43,8 +53,8 @@ public class Main {
                 }
                 case "2" -> {
                     System.out.println("Enter name of car to add in top: ");
-                    var name = scanner.next();
-                    instance.addCarintop(name);
+                        var name = scanner.next();
+                        instance.addCarintop(name);
                 }
                 case "3" -> {
                     System.out.println("Enter car name: ");
@@ -59,7 +69,17 @@ public class Main {
                     var stock = scanner.nextInt();
                     System.out.println("Enter price: ");
                     var price = scanner.nextInt();
-                    instance.addCar(new Car(name, desc, prod_date, hsp, stock, price));
+                    System.out.println("Este hypercar?");
+                    var ans = scanner.next();
+                    if(ans.equalsIgnoreCase("nu"))
+                        instance.addCar(new Car(name, desc, prod_date, hsp, stock, price));
+                    else {
+                        System.out.println("Added horsepower");
+                        int ads = scanner.nextInt();
+                        System.out.println("Type of car");
+                        var typs = scanner.next();
+                        instance.inserthyper(new HyperCar(name, desc, prod_date, hsp, stock, price,ads,typs));
+                    }
                 }
                 case "4" -> {
                     System.out.println("Enter name: ");
@@ -140,6 +160,14 @@ public class Main {
                     int price = scanner.nextInt();
                     instance.updateCar(name,price);
 
+                }
+                case "17"->{
+                    System.out.println("Hypercars in stock:");
+                    instance.showHypers();
+                }
+                case "18" ->{
+                    System.out.println("Urmatorii oameni sunt fostii detinatori ai unei masini:");
+                    instance.showPrevs();
                 }
             }
             System.out.println("To end the program press 12");

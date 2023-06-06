@@ -7,6 +7,10 @@ import CarPackage.SUV;
 import CarPackage.SuperCar;
 import Customer.Customer;
 import DBServices.CarServiceDB;
+import DBServices.HyperCarService;
+import DBServices.PreviousOwnersService;
+import DBServices.TopCarsService;
+import Exceptions.FirstException;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -18,19 +22,25 @@ public class CarStock {
     private static audit auditinstance = audit.getInstance();
     private Map<String, Integer> prevowners = new HashMap<>();
     CarServiceDB carServiceDB;
+    HyperCarService hyperCarService;
+    PreviousOwnersService previousOwnersService;
+    TopCarsService topCarsService;
     private Set<Car> carz = new HashSet<>();
-    private CarStock(CarServiceDB carServiceDB){
+    private CarStock(CarServiceDB carServiceDB, HyperCarService hp, TopCarsService topCarsService,PreviousOwnersService previousOwnersService){
         this.carServiceDB = carServiceDB;
+        this.hyperCarService = hp;
+        this.topCarsService = topCarsService;
+        this.previousOwnersService = previousOwnersService;
     }
     private static class Singleton{
-        public static CarStock createInstance(CarServiceDB carServiceDB)
+        public static CarStock createInstance(CarServiceDB carServiceDB,HyperCarService hp,TopCarsService topCarsService,PreviousOwnersService previousOwnersService)
         {
-            return new CarStock(carServiceDB);
+            return new CarStock(carServiceDB,hp,topCarsService,previousOwnersService);
         }
     }
-    public static CarStock getInstance(CarServiceDB carServiceDB)
+    public static CarStock getInstance(CarServiceDB carServiceDB,HyperCarService hp,TopCarsService topCarsService,PreviousOwnersService previousOwnersService)
     {
-        return Singleton.createInstance(carServiceDB);
+        return Singleton.createInstance(carServiceDB, hp,topCarsService,previousOwnersService);
     }
 
 //    private static class Singleton{
@@ -40,11 +50,29 @@ public class CarStock {
 //    {
 //        return Singleton.instance;
 //    }
+    public void showPrevs() throws SQLException{
+        previousOwnersService.allPrevs();
+    }
     public void addCar(Car c) throws SQLException {
         carServiceDB.addCar(c);
         auditinstance.makeAudit("added a new car");
     }
-
+    public void showTop() throws FirstException {
+        try {
+             {
+                 topCarsService.allTop();
+                auditinstance.makeAudit("showed all top");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void inserthyper(HyperCar hyperCar) throws SQLException{
+        hyperCarService.insertHyper(hyperCar);
+    }
+    public void showHypers() throws SQLException{
+        hyperCarService.allHyperCars();
+    }
     public void getallTest() throws SQLException {
         carServiceDB.allCars();
         auditinstance.makeAudit("list all cars");

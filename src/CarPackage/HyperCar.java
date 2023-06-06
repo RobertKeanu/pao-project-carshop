@@ -7,7 +7,7 @@ public class HyperCar extends Car {
     private String type;
     //meaning if its electrical or combustion
 
-    public HyperCar(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock,Integer price) {
+    public HyperCar(String name, String description, Integer production_date, Integer base_horsepower, Integer available_stock,Integer price,Integer added_horsepower, String type) {
         super(name, description, production_date, base_horsepower, available_stock, price);
 
         this.added_horsepower = added_horsepower;
