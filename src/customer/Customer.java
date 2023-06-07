@@ -1,4 +1,4 @@
-package Customer;
+package customer;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

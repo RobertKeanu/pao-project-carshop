@@ -1,11 +1,9 @@
-package DBServices;
+package dbservices;
 
-import DBConnection.DBConnection;
-import CarPackage.Car;
+import dbconnection.DBConnection;
+import carpackage.Car;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CarServiceDB {
     private static CarServiceDB instance;

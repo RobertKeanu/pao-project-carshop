@@ -1,8 +1,6 @@
-package DBServices;
+package dbservices;
 
-import CarPackage.HyperCar;
-import DBConnection.DBConnection;
-import Top.TopCars;
+import dbconnection.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

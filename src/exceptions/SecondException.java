@@ -1,9 +1,9 @@
-package Exceptions;
+package exceptions;
 
-public class FirstException extends Exception {
+public class SecondException extends Exception{
     private int exceptionCode;
     private String exceptionMessage;
-    public FirstException(int exceptionCode,String exceptionMessage)
+    public SecondException(int exceptionCode,String exceptionMessage)
     {
         this.exceptionCode = exceptionCode;
         this.exceptionMessage = exceptionMessage;

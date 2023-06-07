@@ -1,8 +1,8 @@
-package CarPackage;
+package carpackage;
 
 import java.util.*;
-import Top.TopCars;
-import PreviousOwners.PreviousOwners;
+import top.TopCars;
+import previousowners.PreviousOwners;
 
 public class Car {
     private String name;

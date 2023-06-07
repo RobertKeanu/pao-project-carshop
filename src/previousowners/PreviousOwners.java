@@ -1,4 +1,4 @@
-package PreviousOwners;
+package previousowners;
 
 import java.util.HashMap;
 import java.util.Map;

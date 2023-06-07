@@ -1,6 +1,4 @@
-package CarPackage;
-
-import CarPackage.Car;
+package carpackage;
 
 public class HyperCar extends Car {
     private Integer added_horsepower;

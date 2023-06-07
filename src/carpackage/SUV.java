@@ -1,6 +1,4 @@
-package CarPackage;
-
-import CarPackage.Car;
+package carpackage;
 
 import java.util.ArrayList;
 import java.util.Arrays;

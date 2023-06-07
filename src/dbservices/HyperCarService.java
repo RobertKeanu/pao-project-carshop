@@ -1,8 +1,7 @@
-package DBServices;
+package dbservices;
 
-import CarPackage.HyperCar;
-import DBConnection.DBConnection;
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
+import carpackage.HyperCar;
+import dbconnection.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

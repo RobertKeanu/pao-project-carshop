@@ -1,12 +1,10 @@
-import CarPackage.Car;
-import CarPackage.HyperCar;
-import Customer.Customer;
-import DBServices.CarServiceDB;
-import DBServices.HyperCarService;
-import DBServices.PreviousOwnersService;
-import DBServices.TopCarsService;
-import Exceptions.FirstException;
-import Service.CarStock;
+import carpackage.Car;
+import customer.Customer;
+import dbservices.CarServiceDB;
+import dbservices.HyperCarService;
+import dbservices.PreviousOwnersService;
+import dbservices.TopCarsService;
+import service.CarStock;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -69,17 +67,17 @@ public class Main {
                     var stock = scanner.nextInt();
                     System.out.println("Enter price: ");
                     var price = scanner.nextInt();
-                    System.out.println("Este hypercar?");
-                    var ans = scanner.next();
-                    if(ans.equalsIgnoreCase("nu"))
-                        instance.addCar(new Car(name, desc, prod_date, hsp, stock, price));
-                    else {
-                        System.out.println("Added horsepower");
-                        int ads = scanner.nextInt();
-                        System.out.println("Type of car");
-                        var typs = scanner.next();
-                        instance.inserthyper(new HyperCar(name, desc, prod_date, hsp, stock, price,ads,typs));
-                    }
+//                    System.out.println("Este hypercar?");
+//                    var ans = scanner.next();
+//                    if(ans.equalsIgnoreCase("nu"))
+                    instance.addCar(new Car(name, desc, prod_date, hsp, stock, price));
+//                    else {
+//                        System.out.println("Added horsepower");
+//                        int ads = scanner.nextInt();
+//                        System.out.println("Type of car");
+//                        var typs = scanner.next();
+//                        instance.inserthyper(new HyperCar(name, desc, prod_date, hsp, stock, price,ads,typs));
+//                    }
                 }
                 case "4" -> {
                     System.out.println("Enter name: ");

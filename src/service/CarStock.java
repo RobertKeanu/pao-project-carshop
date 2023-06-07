@@ -1,16 +1,16 @@
-package Service;
+package service;
 
-import Audit.audit;
-import CarPackage.Car;
-import CarPackage.HyperCar;
-import CarPackage.SUV;
-import CarPackage.SuperCar;
-import Customer.Customer;
-import DBServices.CarServiceDB;
-import DBServices.HyperCarService;
-import DBServices.PreviousOwnersService;
-import DBServices.TopCarsService;
-import Exceptions.FirstException;
+import audit.audit;
+import carpackage.Car;
+import carpackage.HyperCar;
+import carpackage.SUV;
+import carpackage.SuperCar;
+import customer.Customer;
+import dbservices.CarServiceDB;
+import dbservices.HyperCarService;
+import dbservices.PreviousOwnersService;
+import dbservices.TopCarsService;
+import exceptions.FirstException;
 
 import java.sql.SQLException;
 import java.util.*;

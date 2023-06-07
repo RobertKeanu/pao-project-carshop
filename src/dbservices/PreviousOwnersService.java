@@ -1,6 +1,6 @@
-package DBServices;
+package dbservices;
 
-import DBConnection.DBConnection;
+import dbconnection.DBConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
